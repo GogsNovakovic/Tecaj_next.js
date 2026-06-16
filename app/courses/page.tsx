@@ -1,6 +1,12 @@
 import Link from "next/link";
+import CoursesCatalogClient from "./courses-catalog-client";
+import { getAllCourses, getCourseCategories } from "@/lib/data";
 
 export default function Courses() {
+
+    const courses = getAllCourses();
+    const categories = getCourseCategories();
+
     return(
         <section className="pad-section">
             <div className="container">
@@ -11,32 +17,10 @@ export default function Courses() {
                         <p className="title=page">Browse every course in catalog</p>
                     </div>
 
-                    <div className="stack-md">
-                        <div className="grid-cards">
-                            <Link href="#" className="card-link">
-                            <div className="badge-row">
-                                <span className="badge badge--brand">Web Development</span>
-                                <span className="badge">Beginner</span>
-                            </div>
-                            <h3 className="card-link-title">HTML, CSS course</h3>
-                            <p className="card-link-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        
-                            <dl className="card-meta">
-                                <div>
-                                    <dt>Lessons</dt>
-                                    <dd>12</dd>
-                                </div>
-                                <div>
-                                    <dt>Duration</dt>
-                                    <dd>23 hours</dd>
-                                </div>
-
-                            </dl>
-
-
-                            </Link>
-                        </div>
-                    </div>
+                    <CoursesCatalogClient 
+                    courses={courses}
+                    categories={categories}
+                    />
 
                 </div>
             </div>
