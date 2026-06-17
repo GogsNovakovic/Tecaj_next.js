@@ -1,7 +1,13 @@
 "use client";
 
-import { type Course } from "@/lib/data";
+import { type Course, instructors } from "@/lib/data";
 import Link from "next/link";
+
+function instructorNameForCourse(course: Course): string {
+  return (
+    instructors.find((instructor) => instructor.slug === course.instructorSlug) ?.name ?? "Unknown Instructor"
+  )
+}
 
 export default function CoursesCatalogClient({ courses, categories }:{
     courses: Course[];
@@ -22,32 +28,28 @@ export default function CoursesCatalogClient({ courses, categories }:{
                 <span className="badge">{course.level}</span>
             </div>
 
-
-          </Link>
-        ))}
-
-            <Link href="#" className="card-link">
-            <div className="badge-row">
-                <span className="badge badge--brand">Web Development</span>
-                <span className="badge">Beginner</span>
-            </div>
-            <h3 className="card-link-title">HTML, CSS course</h3>
-            <p className="card-link-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h3 className="card-link-title">{course.title}</h3>
+            <p className="card-link-body">{course.shortDescription}</p>
 
             <dl className="card-meta">
                 <div>
                     <dt>Lessons</dt>
-                    <dd>12</dd>
+                    <dd>{course.lessonsCount}</dd>
                 </div>
                 <div>
                     <dt>Duration</dt>
-                    <dd>23 hours</dd>
+                    <dd>{course.duration}</dd>
+                </div>
+
+                <div className="card-footer">
+                  <span>By {instructorNameForCourse(course)}</span>
+                  <span className="card-footer-cta">View Course</span>
                 </div>
 
             </dl>
 
-
-            </Link>
+          </Link>
+        ))}
       </div>
     </div>
 )
