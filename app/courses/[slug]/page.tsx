@@ -31,15 +31,66 @@ export default async function CourseDetailPage ({
                         <span className="badge"></span>
                         <span className="badge badge--success"></span>
                     </div>
-                </div>
+                
 
-                <h1 className="title-display"></h1>
-                <p className="course-lede"></p>
+                    <h1 className="title-display">{course.title}</h1>
+                    <p className="course-lede">{course.shortDescription}</p>
 
-                <div className="text-block"></div>
+                    <div className="text-block">
+                        <h2>About this course</h2>
+                        <p>{course.description}</p>
+                    </div>
 
-                <div className="lesson-block"></div>
+                    <div className="lesson-block">
+                        <h2 className="title-section">What you'll learn</h2>
 
+                        <ol>
+                            {course.lessons.map ((lesson, idx) => (
+                                <li key={lesson} className="lesson-item">
+                                    <span className="lesson-number">{idx + 1}</span>
+                                    <span className="lesson-text">{lesson}</span>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>        
+
+                <aside className="course-aside">
+                    <div className="sidebar-card">
+                        <p className="sidebar-label">At a glance</p>
+                        <dl className="meta-grid">
+                            <div>
+                                <dt>Level</dt>
+                                <dd>{course.level}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Category</dt>
+                                <dd>{course.category}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Duration</dt>
+                                <dd>{course.duration}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Lesson</dt>
+                                <dd>{course.lessonsCount}</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    {instructor ? (
+                        <div className="sidebar-card">
+                            <p className="sidebar-label"></p>
+                            <p className="sidebar-instructor-name"></p>
+                            <p className="sidebar-instructor-role"></p>
+                            <p className="text-muted-sm mt-sm"></p>                            
+                        </div>
+                    ) : null}
+
+                </aside>                   
             </div>
 
         </div>
