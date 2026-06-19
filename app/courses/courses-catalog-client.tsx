@@ -2,6 +2,8 @@
 
 import { type Course, instructors } from "@/lib/data";
 import Link from "next/link";
+import { useMemo } from "react";
+import { useState } from "react";
 
 function instructorNameForCourse(course: Course): string {
   return (
@@ -9,12 +11,56 @@ function instructorNameForCourse(course: Course): string {
   )
 }
 
-export default function CoursesCatalogClient({ courses, categories }:{
+export default function CoursesCatalogClient({ courses, categories, levels }:{
     courses: Course[];
     categories: string[];
+    levels: string [];
 }) {
+
+  const [category, setCategory] = useState<string>("all");
+  const [query, setQuery] = useState<string>("");
+  const filtered = useMemo (() => {
+    const q = query.trim().toLowerCase()
+    return courses.filter( (course) => {
+      const matchesQuery = q === "" || course.title.toLowerCase().includes(q);
+      const matchesCategory = category === "all" || course.category === category;
+
+      return matchesQuery && matchesCategory
+    } )
+}, [courses, query, category]);
+
   return (
     <div className="stack-md">
+
+      <div className="panel">
+        <div className="grid-filters">
+          <div className="field">
+            <label htmlFor="course-search" className="field-label">Search by title</label>
+            <input type="text" className="input" id="course-search" placeholder="e.g. Next.js" 
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            ></input>
+          </div>
+
+          <div className="field">
+            <label htmlFor="course-category" className="field-label">Category</label>
+            <select className="select" 
+            id="course-category"
+            onChange={(e) => setCategory(e.target.value)}
+            value = {category}
+            >
+              <option value="all">All</option>
+              {categories.map((c) =>(
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          
+
+        </div>
+      </div>
+
       <div className="grid-cards">
 
         {courses.map((course) => (

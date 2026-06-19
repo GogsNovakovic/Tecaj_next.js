@@ -83,10 +83,12 @@ export default async function CourseDetailPage ({
 
                     {instructor ? (
                         <div className="sidebar-card">
-                            <p className="sidebar-label"></p>
-                            <p className="sidebar-instructor-name"></p>
-                            <p className="sidebar-instructor-role"></p>
-                            <p className="text-muted-sm mt-sm"></p>                            
+                            <p className="sidebar-label">Instructor</p>
+                            <p className="sidebar-instructor-name">{instructor.name}</p>
+                            <p className="sidebar-instructor-role">{instructor.specialty}</p>
+                            <p className="text-muted-sm mt-sm">{instructor.shortBio}</p>  
+                            <Link href={`/instructors/${instructor.slug}`} 
+                            className="link-brand is-block">View profile</Link>                          
                         </div>
                     ) : null}
 
