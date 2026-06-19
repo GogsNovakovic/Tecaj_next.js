@@ -27,14 +27,14 @@ export default async function CourseDetailPage ({
             <div className="course-layout">
                 <div>
                     <div className="badge-row">
+                        <span className="badge badge--brand"></span>
                         <span className="badge"></span>
-                        <span className="badge"></span>
-                        <span className="badge"></span>
+                        <span className="badge badge--success"></span>
                     </div>
                 </div>
 
-                <h1></h1>
-                <p></p>
+                <h1 className="title-display"></h1>
+                <p className="course-lede"></p>
 
                 <div className="text-block"></div>
 
