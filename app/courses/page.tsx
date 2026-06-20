@@ -1,11 +1,12 @@
 import Link from "next/link";
 import CoursesCatalogClient from "./courses-catalog-client";
-import { getAllCourses, getCourseCategories } from "@/lib/data";
+import { getAllCourses, getCourseCategories, getCourseLevels } from "@/lib/data";
 
 export default function Courses() {
 
     const courses = getAllCourses();
     const categories = getCourseCategories();
+    const levels = getCourseLevels();
 
     return(
         <section className="pad-section">
@@ -20,6 +21,7 @@ export default function Courses() {
                     <CoursesCatalogClient 
                     courses={courses}
                     categories={categories}
+                    levels={levels}
                     />
 
                 </div>
