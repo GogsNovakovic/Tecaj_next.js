@@ -29,6 +29,13 @@ export default function CoursesCatalogClient({ courses, categories, levels }:{
     } )
 }, [courses, query, category]);
 
+  const resetFilters = () => {
+      setQuery("");
+      setCategory("all")
+  };
+
+  const isFiltering = query !== "" || category !== "all";
+
   return (
     <div className="stack-md">
 
@@ -55,15 +62,18 @@ export default function CoursesCatalogClient({ courses, categories, levels }:{
               ))}
             </select>
           </div>
-
-          
-
         </div>
+
+            <div className="filter-bar">
+              {isFiltering ? (
+                <button className = "btn-link" onClick={(resetFilters)}>Reset filters</button>
+              ): null}
+            </div>
       </div>
 
       <div className="grid-cards">
 
-        {courses.map((course) => (
+        {filtered.map((course) => (
           <Link
             key={course.id}
             href={`/courses/${course.slug}`}
