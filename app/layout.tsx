@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "LearnHub - Learn something new",
@@ -17,6 +18,26 @@ export default function RootLayout({
       <body className="layout">
         <header className="site-header">
           <div className="container site-header-inner">
+
+            <Link href="/" className="site-logo">
+              <span className="site-logo-mark">L</span>
+              <span>LearnHub</span>
+            </Link>
+
+            <form action="/search" method="get" className="header-search">
+            
+            <input 
+            type="search"
+            name="q"
+            id="header-search-q"
+            placeholder="Search courses..."
+            className="input header-search-input"
+            autoComplete="off"
+            ></input>
+            
+            <button type="submit" className="btn btn-primary btn-sm">Search</button>
+            </form>
+
             <nav className="site-nav">
             <a href="/" className="site-nav-link">Home</a>
             <a href="/courses" className="site-nav-link">Courses</a>

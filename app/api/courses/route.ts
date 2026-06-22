@@ -5,6 +5,8 @@ export async function GET (request: Request) {
     const {searchParams} = new URL (request.url);
     const q = searchParams.get("q")?.trim() ?? ""; 
 
+    let courses = getAllCourses();
+
     if(q) {
         const needle = q.toLowerCase();
         courses = courses.filter(
@@ -13,7 +15,7 @@ export async function GET (request: Request) {
     }
 
     return NextResponse.json ({
-        count: courses.lenght,
+        count: courses.length,
         courses
     })
 }
