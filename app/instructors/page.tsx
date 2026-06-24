@@ -1,3 +1,4 @@
+import { SectionTitle } from "@/components/sectionTitle";
 import { getAllInstructors } from "@/lib/data";
 import Link from "next/link";
 
@@ -18,11 +19,15 @@ export default function Instructors() {
         <section className="pad-section">
             <div className="container">
                 <div className="stack">
-                    <div className="section-head">
-                        <span className="eyebrow">Team</span>
-                        <h2 className="title-page">Meet the instructors</h2>
-                        <p className="title=page">Working engineers and designers who teach the courses you see on LearnHub.</p>
-                    </div>  
+                      
+                <SectionTitle
+                    eyebrow = "team"
+                    title = "Meet the instructors"
+                    description="Working engineers and designers who teach the courses you see on LearnHub."
+                >
+                    
+
+                </SectionTitle>
 
                     <div className="grid-cards">
                         {instructorsList.map((instructor) => (
