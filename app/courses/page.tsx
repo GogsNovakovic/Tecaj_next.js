@@ -1,5 +1,5 @@
-import Link from "next/link";
-import CoursesCatalogClient from "./courses-catalog-client";
+
+import CoursesCatalogClient from "@/components/coursesCatalogClient";
 import { getAllCourses, getCourseCategories, getCourseLevels } from "@/lib/data";
 import { SectionTitle } from "@/components/sectionTitle";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { type Course, instructors } from "@/lib/data";
-import Link from "next/link";
 import { useMemo } from "react";
 import { useState } from "react";
+import { CourseCard } from "./courseCard";
 
 function instructorNameForCourse(course: Course): string {
   return (
@@ -74,37 +74,12 @@ export default function CoursesCatalogClient({ courses, categories, levels }:{
       <div className="grid-cards">
 
         {filtered.map((course) => (
-          <Link
-            key={course.id}
-            href={`/courses/${course.slug}`}
-            className="card-link"
-          >
-            <div className="badge-row">
-                <span className="badge badge--brand">{course.category}</span>
-                <span className="badge">{course.level}</span>
-            </div>
-
-            <h3 className="card-link-title">{course.title}</h3>
-            <p className="card-link-body">{course.shortDescription}</p>
-
-            <dl className="card-meta">
-                <div>
-                    <dt>Lessons</dt>
-                    <dd>{course.lessonsCount}</dd>
-                </div>
-                <div>
-                    <dt>Duration</dt>
-                    <dd>{course.duration}</dd>
-                </div>
-
-                <div className="card-footer">
-                  <span>By {instructorNameForCourse(course)}</span>
-                  <span className="card-footer-cta">View Course</span>
-                </div>
-
-            </dl>
-
-          </Link>
+            <CourseCard
+            key={course.id} 
+            course={course} 
+            instructorName={instructorNameForCourse(course)}>
+                
+            </CourseCard>
         ))}
       </div>
     </div>
